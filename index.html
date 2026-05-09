@@ -5,70 +5,57 @@
   body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    background-color: #000; /* Deep black for the sides */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .background-container {
-    /* This forces the image to stretch to cover the entire screen */
-    background-image: url('download.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
+  .main-container {
+    position: relative;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    max-width: 1000px; /* Limits width so the tall photo doesn't stretch too wide */
+    margin: 0 auto;
   }
 
-  .content-wrapper {
-    /* Transparent glass effect so you can see the blueprint through the text */
-    background: rgba(0, 0, 0, 0.75); 
+  .bg-image {
+    width: 100%;
+    display: block; /* Shows the WHOLE photo from top to bottom */
+    height: auto;
+  }
+
+  .overlay-content {
+    position: absolute;
+    top: 15%; /* Positions your text over the blueprint area */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    background: rgba(0, 0, 0, 0.85); 
     color: white;
-    max-width: 750px;
-    width: 90%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding: 40px;
-    border-radius: 2px; /* Sharp corners look more like engineering docs */
+    padding: 40px 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     text-align: center;
-    backdrop-filter: blur(5px); /* Blurs the photo slightly behind the box for readability */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
   }
 
-  h1 { font-size: 2.5em; letter-spacing: 2px; margin-bottom: 10px; border-bottom: 1px solid white; display: inline-block; padding-bottom: 10px; }
-  .subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 30px; }
+  h1 { font-size: 2.2em; text-transform: uppercase; letter-spacing: 3px; margin: 0; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; }
+  .subtitle { color: #aaa; margin: 15px 0 30px 0; font-size: 1em; }
 
-  .btn-container { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-  
-  /* Modern Monochrome Buttons */
-  .btn { 
-    padding: 12px 30px; 
-    border-radius: 0px; 
-    text-decoration: none; 
-    font-weight: bold; 
-    transition: 0.3s; 
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 1px;
-  }
-  .btn-cv { background: white; color: black; border: 1px solid white; }
-  .btn-cv:hover { background: transparent; color: white; }
-  
+  .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+  .btn { padding: 12px 25px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8em; letter-spacing: 1px; transition: 0.3s; }
+  .btn-cv { background: white; color: black; }
   .btn-li { background: transparent; color: white; border: 1px solid white; }
-  .btn-li:hover { background: white; color: black; }
+  
+  .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
-  h2 { font-size: 1.2em; color: white; text-transform: uppercase; margin-top: 40px; letter-spacing: 3px; }
-  .tag { border: 1px solid rgba(255,255,255,0.4); color: white; padding: 5px 12px; font-size: 0.8em; margin: 4px; display: inline-block; }
+  .info-text { margin-top: 30px; color: #ddd; font-size: 0.95em; line-height: 1.8; }
+  .tag { border: 1px solid #555; padding: 4px 10px; font-size: 0.75em; margin: 3px; display: inline-block; color: #ccc; }
 </style>
 </head>
 <body>
 
-<div class="background-container">
-  <div class="content-wrapper">
+<div class="main-container">
+  <img src="download.jpeg" class="bg-image" alt="Engineering Background">
+
+  <div class="overlay-content">
     <h1>Assem Roumieh</h1>
     <p class="subtitle">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
     
@@ -77,15 +64,11 @@
       <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">LinkedIn</a>
     </div>
 
-    <h2>Professional Profile</h2>
-    <p style="color: #bbb;">Managing digital migration and enterprise infrastructure at <b>Fincantieri S.p.A.</b>, specializing in high-tier technical deployment within industrial environments.</p>
-
-    <h2>Expertise</h2>
-    <div style="margin-top: 10px;">
-      <span class="tag">Windows 11 Enterprise</span> 
-      <span class="tag">Fincantieri Operations</span> 
-      <span class="tag">IT Infrastructure</span>
-      <span class="tag">Automotive Diagnostics</span>
+    <div class="info-text">
+      <p>Managing digital migration and infrastructure at <b>Fincantieri S.p.A.</b></p>
+      <span class="tag">Windows 11 Enterprise</span>
+      <span class="tag">Maritime IT</span>
+      <span class="tag">Diagnostics</span>
     </div>
   </div>
 </div>
