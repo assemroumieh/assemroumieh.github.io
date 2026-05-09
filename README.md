@@ -1,36 +1,45 @@
-# Assem Roumieh
-### Automotive Engineering Student (PoliTo) | IT Deployment Specialist
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: auto; padding: 20px; background-color: #f4f7f6; }
+  .header { text-align: center; background: #002d5b; color: white; padding: 40px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  .btn-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+  .btn { padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+  .btn-cv { background: #ffcc00; color: #002d5b; border: 2px solid #ffcc00; }
+  .btn-cv:hover { background: transparent; color: #ffcc00; }
+  .btn-li { background: #0077b5; color: white; }
+  .section { background: white; padding: 25px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #002d5b; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+  h2 { color: #002d5b; margin-top: 0; }
+  .tag { background: #eef2f7; color: #002d5b; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; font-weight: bold; }
+</style>
+</head>
+<body>
 
----
+<div class="header">
+  <h1>Assem Roumieh</h1>
+  <p>Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
+  
+  <div class="btn-container">
+    <a href="Assem_Roumieh_CV.pdf" class="btn btn-cv">📂 DOWNLOAD CV (PDF)</a>
+    <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">🔗 LINKEDIN PROFILE</a>
+  </div>
+</div>
 
-## 🚀 Professional Profile
-I am an **Automotive Engineering student at Politecnico di Torino**, bridging the gap between hands-on mechanical diagnostics and enterprise-level IT infrastructure. Currently, I am managing digital migration projects at **Fincantieri S.p.A.**, ensuring operational continuity and high-tier technical deployment in a complex industrial environment.
+<div class="section">
+  <h2>🚀 Professional Story</h2>
+  <p>Bridging the gap between <b>heavy-industry mechanical diagnostics</b> and <b>Enterprise IT Infrastructure</b>. Currently driving digital transformation at <b>Fincantieri S.p.A.</b>, ensuring technological precision in the maritime sector.</p>
+</div>
 
----
+<div class="section">
+  <h2>💼 Key Experience</h2>
+  <p><b>IT Deployment Specialist - Fincantieri S.p.A.</b><br>
+  <span class="tag">Windows 11 Enterprise</span> <span class="tag">Hardware Provisioning</span> <span class="tag">Maritime Tech Support</span></p>
+  
+  <p><b>IT Helpdesk Support - Ansaldo Energia</b><br>
+  <span class="tag">Industrial Troubleshooting</span> <span class="tag">Network Continuity</span></p>
+</div>
 
-## 💼 Professional Experience
-
-### **IT Deployment Specialist**
-**Fincantieri S.p.A. (via Progim S.r.l.)** | *Genoa, Italy*
-* Managing enterprise-wide Windows 11 migrations and large-scale hardware provisioning.
-* Coordinating data continuity and cloud integration for industrial engineering teams.
-
-### **IT Helpdesk Support**
-**Ansaldo Energia** | *Genoa, Italy*
-* Provided mission-critical technical support and hardware management within a heavy-industry setting.
-
-### **Mechanical Assistant**
-*Lebanon*
-* Gained foundational experience in vehicle diagnostics and mechanical maintenance.
-
----
-
-## 🛠️ Technical Skills
-* **Engineering:** Automotive Systems, CAD (Computer-Aided Design), Mechanical Troubleshooting.
-* **Information Technology:** OS Deployment, Microsoft 365 Enterprise, Hardware Maintenance.
-* **Languages:** English (Professional), Italian (Fluent), Arabic (Native).
-
----
-
-## 📫 Contact & Connect
-[LinkedIn Profile](https://www.linkedin.com/in/assem-roumieh/) | [Email Me](mailto:assem.roumieh@example.com)
+<img src="https://profile-counter.glitch.me/assemroumieh/count.svg" alt="Visitor Counter" style="display:none;">
+</body>
+</html>
