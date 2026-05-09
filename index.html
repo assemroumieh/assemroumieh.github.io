@@ -1,83 +1,592 @@
+Here's the full code. Save it as index.html, place your download.jpeg in the same folder, then double-click to open.
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Assem Roumieh — Automotive Engineer & IT Operations</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --accent: #ffcc00;
+    --accent-soft: rgba(255, 204, 0, 0.15);
+    --bg: #0a0a0a;
+    --text: #ffffff;
+    --muted: #a0a0a0;
+    --border: rgba(255, 255, 255, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
 
   body {
-    background-color: #000;
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
+    font-family: 'Syne', 'Segoe UI', sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
 
-  /* This forces the photo to repeat behind the content so it NEVER runs out */
-  .main-wrapper {
+  /* THE FULLSCREEN BACKGROUND (THE FIX) */
+  .bg-fixed {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
     background-image: url('download.jpeg');
-    background-size: contain; 
-    background-repeat: repeat-y; 
-    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse at top right, rgba(255, 204, 0, 0.08), transparent 50%),
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 48px;
+    background: rgba(10, 10, 10, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    color: var(--text);
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.35s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* LAYOUT */
   .section {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 120px 24px 80px;
+    position: relative;
+  }
+  .container { width: 100%; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  .hero-wrap { display: grid; grid-template-columns: 1fr; gap: 32px; }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-tag::before {
+    content: ""; width: 40px; height: 1px; background: var(--accent);
   }
 
-  .glass-card {
-    background: rgba(0, 0, 0, 0.92);
-    padding: 50px;
-    width: 100%;
-    max-width: 700px;
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.2rem, 9vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+  .hero h1 .accent { color: var(--accent); }
+
+  .hero-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.8s;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0a;
+    border-color: var(--accent);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.2s;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(180deg, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    margin-bottom: 56px;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    flex: 1;
+  }
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--accent);
+    margin-top: 12px;
+  }
+
+  /* EXPERIENCE */
+  .glass-panel {
+    background: rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    padding: 48px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  }
+
+  .timeline { display: grid; gap: 28px; }
+
+  .exp-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 28px;
+    border-left: 2px solid var(--accent);
+    background: rgba(255,255,255,0.02);
+    transition: background 0.35s ease, transform 0.35s ease;
+  }
+  .exp-card:hover {
+    background: rgba(255, 204, 0, 0.05);
+    transform: translateX(6px);
+  }
+  .exp-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .exp-meta .date { display: block; color: var(--muted); margin-top: 6px; font-size: 0.7rem; }
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .exp-desc { color: var(--muted); font-size: 0.95rem; max-width: 560px; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .skill-cell {
+    background: rgba(10,10,10,0.85);
+    padding: 32px 24px;
+    transition: background 0.3s ease;
+    cursor: default;
+  }
+  .skill-cell:hover { background: rgba(255, 204, 0, 0.08); }
+  .skill-cell i {
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .skill-cell h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .skill-cell p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .contact-card {
+    padding: 32px;
+    background: rgba(10,10,10,0.7);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .contact-card i {
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .contact-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .contact-card .value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer {
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px #000;
+    padding: 32px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--muted);
+    background: rgba(0,0,0,0.85);
+    border-top: 1px solid var(--border);
+  }
+  footer .accent { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
   }
 
-  h1 { font-size: 2.5em; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; }
-  h2 { color: #ffcc00; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 2px; }
-  
-  .btn { display: inline-block; padding: 15px 30px; margin: 10px; text-decoration: none; font-weight: bold; border: 1px solid white; color: white; text-transform: uppercase; font-size: 0.8em; }
-  .btn-white { background: white; color: black; }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
 
-  .exp-box { text-align: left; margin-top: 30px; border-left: 3px solid #ffcc00; padding-left: 20px; }
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .navbar { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .glass-panel { padding: 28px 20px; }
+    .exp-card { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+    .section { padding: 100px 16px 60px; }
+    .section-header { flex-direction: column; gap: 8px; }
+    .bg-fixed { background-attachment: scroll; }
+  }
 </style>
 </head>
 <body>
 
-<div class="main-wrapper">
+<div class="bg-fixed"></div>
+<div class="bg-overlay"></div>
 
-  <div class="section">
-    <div class="glass-card">
-      <h1>Assem Roumieh</h1>
-      <p>Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
-      <div style="margin-top: 30px;">
-        <a href="Assem_Roumieh_CV.pdf" class="btn btn-white">Download CV</a>
-        <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn">LinkedIn</a>
+<nav class="navbar">
+  <div class="nav-brand">A<span>R</span> — Engineer</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="section hero" id="home">
+  <div class="container hero-wrap">
+    <div>
+      <div class="hero-tag">Portfolio · 2026</div>
+      <h1>
+        Assem<br/>
+        <span class="accent">Roumieh</span>
+      </h1>
+      <p class="hero-sub">
+        <strong>Automotive Engineering</strong> @ Politecnico di Torino &nbsp;//&nbsp;
+        <strong>IT Operations Specialist</strong> @ Fincantieri S.p.A.<br/>
+        Bridging mechanical precision with digital infrastructure — turning blueprints into systems that move.
+      </p>
+      <div class="hero-cta">
+        <a href="Assem_Roumieh_CV.pdf" class="btn btn-primary" download>
+          <i class="fa-solid fa-download"></i> Download CV
+        </a>
+        <a href="https://www.linkedin.com/in/assem-roumieh/" target="_blank" rel="noopener" class="btn">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="#contact" class="btn">
+          <i class="fa-solid fa-arrow-right"></i> Get in Touch
+        </a>
       </div>
-      <p style="margin-top: 50px; color: #444;">Scroll for more ↓</p>
     </div>
   </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-  <div class="section">
-    <div class="glass-card">
-      <h2>Technical Experience</h2>
-      <div class="exp-box">
-        <h3>IT Operations Specialist</h3>
-        <p style="color: #ffcc00; font-weight: bold;">Fincantieri S.p.A.</p>
-        <p style="color: #aaa;">Digital migration and infrastructure deployment.</p>
-      </div>
-      <div class="exp-box">
-        <h3>Mechanical Engineering</h3>
-        <p style="color: #ffcc00; font-weight: bold;">PoliTo</p>
-        <p style="color: #aaa;">Technical diagnostics and automotive R&D.</p>
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">01 /</span>
+      <h2 class="section-title">Technical Experience</h2>
+    </div>
+
+    <div class="glass-panel reveal">
+      <div class="timeline">
+
+        <div class="exp-card">
+          <div class="exp-meta">
+            Industry
+            <span class="date">Present</span>
+          </div>
+          <div>
+            <h3 class="exp-role">IT Operations Specialist</h3>
+            <div class="exp-company">Fincantieri S.p.A.</div>
+            <p class="exp-desc">
+              Leading digital migration and infrastructure deployment for one of the world's largest
+              shipbuilding groups. Hands-on with enterprise systems, network operations, and on-board
+              IT rollouts across naval platforms.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-meta">
+            Academic
+            <span class="date">Ongoing</span>
+          </div>
+          <div>
+            <h3 class="exp-role">Automotive / Mechanical Engineering</h3>
+            <div class="exp-company">Politecnico di Torino</div>
+            <p class="exp-desc">
+              Specialized study in technical diagnostics, powertrain analysis, and automotive R&amp;D.
+              Focus on CAD/CAE workflows, vehicle dynamics, and combustion-to-electric transition systems.
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
+</section>
 
-</div>
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Core Competencies</h2>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-cell">
+        <i class="fa-solid fa-car-side"></i>
+        <h4>Automotive R&amp;D</h4>
+        <p>Diagnostics · Powertrain · CAE</p>
+      </div>
+      <div class="skill-cell">
+        <i class="fa-solid fa-gears"></i>
+        <h4>Mechanical Design</h4>
+        <p>CAD · SolidWorks · CATIA</p>
+      </div>
+      <div class="skill-cell">
+        <i class="fa-solid fa-server"></i>
+        <h4>IT Operations</h4>
+        <p>Infrastructure · Networks · Migration</p>
+      </div>
+      <div class="skill-cell">
+        <i class="fa-solid fa-network-wired"></i>
+        <h4>Systems Deployment</h4>
+        <p>Enterprise · On-board IT</p>
+      </div>
+      <div class="skill-cell">
+        <i class="fa-solid fa-code"></i>
+        <h4>Technical Tooling</h4>
+        <p>MATLAB · Python · Scripting</p>
+      </div>
+      <div class="skill-cell">
+        <i class="fa-solid fa-language"></i>
+        <h4>Languages</h4>
+        <p>Italian · English · Arabic</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-num">03 /</span>
+      <h2 class="section-title">Let's Connect</h2>
+    </div>
+
+    <div class="glass-panel reveal">
+      <p style="font-family:'JetBrains Mono',monospace; color:var(--muted); max-width:620px; line-height:1.8;">
+        Open to collaborations in <span style="color:var(--accent)">automotive engineering</span>,
+        <span style="color:var(--accent)">IT infrastructure</span>, and cross-disciplinary R&amp;D projects.
+      </p>
+
+      <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/assem-roumieh/" target="_blank" rel="noopener" class="contact-card">
+          <i class="fa-brands fa-linkedin"></i>
+          <span class="label">Network</span>
+          <span class="value">LinkedIn</span>
+        </a>
+        <a href="Assem_Roumieh_CV.pdf" class="contact-card" download>
+          <i class="fa-solid fa-file-pdf"></i>
+          <span class="label">Document</span>
+          <span class="value">Curriculum Vitae</span>
+        </a>
+        <a href="mailto:assem.roumieh@example.com" class="contact-card">
+          <i class="fa-solid fa-envelope"></i>
+          <span class="label">Direct</span>
+          <span class="value">Email</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; <span id="year"></span> Assem Roumieh · Engineered with <span class="accent">precision</span>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
