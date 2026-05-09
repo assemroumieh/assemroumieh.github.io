@@ -2,60 +2,62 @@
 <html>
 <head>
 <style>
+  * { box-sizing: border-box; }
   body, html {
     margin: 0;
     padding: 0;
-    background-color: #000; /* Deep black for the sides */
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevents side-scrolling */
+    background-color: #000;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .main-container {
-    position: relative;
-    width: 100%;
-    max-width: 1000px; /* Limits width so the tall photo doesn't stretch too wide */
-    margin: 0 auto;
+  .full-screen-bg {
+    /* This is the magic part: it forces the photo to be the background of the WHOLE page */
+    background-image: url('download.jpeg');
+    background-size: 100% 100%; /* Stretches the photo to hit all four corners */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps the photo still while you scroll text */
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .bg-image {
-    width: 100%;
-    display: block; /* Shows the WHOLE photo from top to bottom */
-    height: auto;
-  }
-
-  .overlay-content {
-    position: absolute;
-    top: 15%; /* Positions your text over the blueprint area */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
-    background: rgba(0, 0, 0, 0.85); 
+  .glass-box {
+    background: rgba(0, 0, 0, 0.8); 
     color: white;
-    padding: 40px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 50px 30px;
+    width: 90%;
+    max-width: 800px;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    backdrop-filter: blur(3px); /* Makes the box feel premium */
   }
 
-  h1 { font-size: 2.2em; text-transform: uppercase; letter-spacing: 3px; margin: 0; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; }
-  .subtitle { color: #aaa; margin: 15px 0 30px 0; font-size: 1em; }
+  h1 { font-size: 3em; text-transform: uppercase; letter-spacing: 5px; margin: 0; border-bottom: 2px solid white; display: inline-block; padding-bottom: 15px; }
+  .subtitle { color: #aaa; margin: 20px 0 40px 0; font-size: 1.1em; letter-spacing: 1px; }
 
-  .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-  .btn { padding: 12px 25px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8em; letter-spacing: 1px; transition: 0.3s; }
-  .btn-cv { background: white; color: black; }
+  .btn-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .btn { padding: 15px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.9em; letter-spacing: 2px; transition: 0.4s; }
+  .btn-cv { background: white; color: black; border: 1px solid white; }
   .btn-li { background: transparent; color: white; border: 1px solid white; }
-  
-  .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+  .btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-  .info-text { margin-top: 30px; color: #ddd; font-size: 0.95em; line-height: 1.8; }
-  .tag { border: 1px solid #555; padding: 4px 10px; font-size: 0.75em; margin: 3px; display: inline-block; color: #ccc; }
+  .description { margin-top: 40px; color: #ccc; font-size: 1em; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+  .tag-box { margin-top: 30px; }
+  .tag { border: 1px solid #444; padding: 6px 15px; font-size: 0.8em; margin: 5px; display: inline-block; text-transform: uppercase; color: #999; }
 </style>
 </head>
 <body>
 
-<div class="main-container">
-  <img src="download.jpeg" class="bg-image" alt="Engineering Background">
-
-  <div class="overlay-content">
+<div class="full-screen-bg">
+  <div class="glass-box">
     <h1>Assem Roumieh</h1>
     <p class="subtitle">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
     
@@ -64,11 +66,13 @@
       <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">LinkedIn</a>
     </div>
 
-    <div class="info-text">
+    <div class="description">
       <p>Managing digital migration and infrastructure at <b>Fincantieri S.p.A.</b></p>
-      <span class="tag">Windows 11 Enterprise</span>
-      <span class="tag">Maritime IT</span>
-      <span class="tag">Diagnostics</span>
+      <div class="tag-box">
+        <span class="tag">Windows 11 Enterprise</span>
+        <span class="tag">Maritime Infrastructure</span>
+        <span class="tag">Industrial Systems</span>
+      </div>
     </div>
   </div>
 </div>
