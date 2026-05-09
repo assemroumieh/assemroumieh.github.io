@@ -2,61 +2,92 @@
 <html>
 <head>
 <style>
-  body { 
-    /* This removes the blue color and shows the natural image */
-    background-color: #1a1a1a; /* Dark background for the sides */
-    background-image: url('download.jpeg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: contain; /* This ensures the WHOLE image is shown without cropping */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    line-height: 1.6; 
-    margin: 0; 
+  body, html {
+    margin: 0;
     padding: 0;
-    min-height: 100vh;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  /* This adds a semi-transparent box so your text is still readable over the image */
-  .content-wrapper {
-    background: rgba(255, 255, 255, 0.9); 
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    text-align: center;
+  .background-container {
+    /* This forces the image to stretch to cover the entire screen */
+    background-image: url('download.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
+
+  .content-wrapper {
+    /* Transparent glass effect so you can see the blueprint through the text */
+    background: rgba(0, 0, 0, 0.75); 
+    color: white;
+    max-width: 750px;
+    width: 90%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 40px;
+    border-radius: 2px; /* Sharp corners look more like engineering docs */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    text-align: center;
+    backdrop-filter: blur(5px); /* Blurs the photo slightly behind the box for readability */
+  }
+
+  h1 { font-size: 2.5em; letter-spacing: 2px; margin-bottom: 10px; border-bottom: 1px solid white; display: inline-block; padding-bottom: 10px; }
+  .subtitle { color: #ccc; font-size: 1.1em; margin-bottom: 30px; }
 
   .btn-container { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-  .btn { padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-  .btn-cv { background: #ffcc00; color: #002d5b; border: 2px solid #ffcc00; }
-  .btn-li { background: #0077b5; color: white; }
   
-  h1 { color: #002d5b; margin-bottom: 5px; }
-  h2 { color: #002d5b; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 5px; }
-  .subtitle { color: #666; font-weight: bold; margin-bottom: 30px; }
-  .tag { background: #002d5b; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; margin: 2px; display: inline-block; }
+  /* Modern Monochrome Buttons */
+  .btn { 
+    padding: 12px 30px; 
+    border-radius: 0px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    transition: 0.3s; 
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  .btn-cv { background: white; color: black; border: 1px solid white; }
+  .btn-cv:hover { background: transparent; color: white; }
+  
+  .btn-li { background: transparent; color: white; border: 1px solid white; }
+  .btn-li:hover { background: white; color: black; }
+
+  h2 { font-size: 1.2em; color: white; text-transform: uppercase; margin-top: 40px; letter-spacing: 3px; }
+  .tag { border: 1px solid rgba(255,255,255,0.4); color: white; padding: 5px 12px; font-size: 0.8em; margin: 4px; display: inline-block; }
 </style>
 </head>
 <body>
 
-<div class="content-wrapper">
-  <h1>Assem Roumieh</h1>
-  <p class="subtitle">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
-  
-  <div class="btn-container">
-    <a href="Assem_Roumieh_CV.pdf" class="btn btn-cv">📂 DOWNLOAD CV (PDF)</a>
-    <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">🔗 LINKEDIN</a>
+<div class="background-container">
+  <div class="content-wrapper">
+    <h1>Assem Roumieh</h1>
+    <p class="subtitle">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
+    
+    <div class="btn-container">
+      <a href="Assem_Roumieh_CV.pdf" class="btn btn-cv">Download CV</a>
+      <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">LinkedIn</a>
+    </div>
+
+    <h2>Professional Profile</h2>
+    <p style="color: #bbb;">Managing digital migration and enterprise infrastructure at <b>Fincantieri S.p.A.</b>, specializing in high-tier technical deployment within industrial environments.</p>
+
+    <h2>Expertise</h2>
+    <div style="margin-top: 10px;">
+      <span class="tag">Windows 11 Enterprise</span> 
+      <span class="tag">Fincantieri Operations</span> 
+      <span class="tag">IT Infrastructure</span>
+      <span class="tag">Automotive Diagnostics</span>
+    </div>
   </div>
-
-  <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
-
-  <h2>🚀 Professional Profile</h2>
-  <p>Managing digital migration and enterprise infrastructure at <b>Fincantieri S.p.A.</b>, specializing in high-tier technical deployment within industrial environments.</p>
-
-  <h2>💼 Experience</h2>
-  <p><b>IT Deployment Specialist</b><br>
-  <span class="tag">Windows 11</span> <span class="tag">Fincantieri</span> <span class="tag">Infrastructure</span></p>
 </div>
 
 <img src="https://profile-counter.glitch.me/assemroumieh/count.svg" alt="Visitor Counter" style="display:none;">
