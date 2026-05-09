@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
 <style>
-  /* 1. KILL ALL BORDERS AND MARGINS */
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important; /* Stops any movement */
-    background: #000;
+  /* 1. COMPLETELY KILL BROWSER DEFAULT SPACING */
+  * { 
+    margin: 0 !important; 
+    padding: 0 !important; 
+    box-sizing: border-box; 
   }
 
-  /* 2. FORCE PHOTO TO TOUCH EVERY CORNER */
-  .hero {
-    position: fixed;
-    top: 0;
-    left: 0;
+  html, body {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important; /* Locks the screen so it can't move */
+    background-color: #000;
+  }
+
+  /* 2. THE STRETCH COMMAND */
+  .full-page-bg {
     width: 100vw;
     height: 100vh;
     background-image: url('download.jpeg');
-    background-size: 100% 100%; /* STRETCH TO ALL 4 EDGES */
+    /* '100% 100%' forces it to touch all four corners of the screen */
+    background-size: 100% 100%; 
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
@@ -28,36 +30,40 @@
     justify-content: center;
   }
 
-  .box {
-    background: rgba(0, 0, 0, 0.85);
+  .content-box {
+    background: rgba(0, 0, 0, 0.85); 
     color: white;
-    padding: 50px;
-    width: 80%;
-    max-width: 700px;
+    padding: 60px 40px;
+    width: 85%;
+    max-width: 800px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.1);
-    font-family: sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0,0,0,1);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
   }
 
-  h1 { font-size: 3em; margin: 0 0 20px 0; border-bottom: 2px solid white; display: inline-block; }
-  .btn-container { margin: 30px 0; display: flex; justify-content: center; gap: 20px; }
-  .btn { padding: 15px 30px; text-decoration: none; font-weight: bold; border: 1px solid white; color: white; }
+  h1 { font-size: 3.5em; letter-spacing: 4px; text-transform: uppercase; border-bottom: 2px solid white; display: inline-block; padding-bottom: 10px; margin-bottom: 20px !important; }
+  .subtitle { color: #aaa; font-size: 1.2em; margin-bottom: 40px !important; }
+  
+  .btn-wrap { display: flex; justify-content: center; gap: 20px; }
+  .btn { padding: 15px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; font-size: 0.9em; border: 1px solid white; }
   .btn-white { background: white; color: black; }
+  .btn-outline { background: transparent; color: white; }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="box">
+<div class="full-page-bg">
+  <div class="content-box">
     <h1>Assem Roumieh</h1>
-    <p>Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
+    <p class="subtitle">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
     
-    <div class="btn-container">
+    <div class="btn-wrap">
       <a href="Assem_Roumieh_CV.pdf" class="btn btn-white">Download CV</a>
-      <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-outline">LinkedIn</a>
     </div>
 
-    <p style="color: #888;">Digital Migration & Infrastructure @ Fincantieri S.p.A.</p>
+    <p style="margin-top: 40px !important; color: #888; font-size: 0.9em; letter-spacing: 1px;">Digital Migration & Infrastructure @ Fincantieri S.p.A.</p>
   </div>
 </div>
 
