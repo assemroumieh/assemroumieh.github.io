@@ -18,7 +18,7 @@
 
 <div class="header">
   <h1>Assem Roumieh</h1>
-  <p>Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
+  <p>Automotive Engineering @ PoliTo.</p>
   
   <div class="btn-container">
     <a href="Assem_Roumieh_CV.pdf" class="btn btn-cv">📂 DOWNLOAD CV (PDF)</a>
