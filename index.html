@@ -3,68 +3,60 @@
 <head>
 <style>
   body { 
-    /* This makes the photo fill the whole screen */
-    background: linear-gradient(rgba(0, 45, 91, 0.8), rgba(0, 45, 91, 0.8)), url('download.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    /* This removes the blue color and shows the natural image */
+    background-color: #1a1a1a; /* Dark background for the sides */
+    background-image: url('download.jpeg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain; /* This ensures the WHOLE image is shown without cropping */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     line-height: 1.6; 
-    color: #333; 
     margin: 0; 
-    padding: 20px;
+    padding: 0;
     min-height: 100vh;
   }
 
-  .header { 
-    text-align: center; 
-    color: white; 
-    padding: 60px 20px; 
-    border-radius: 10px; 
-    margin-bottom: 30px; 
+  /* This adds a semi-transparent box so your text is still readable over the image */
+  .content-wrapper {
+    background: rgba(255, 255, 255, 0.9); 
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
   }
 
-  .btn-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+  .btn-container { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
   .btn { padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; }
   .btn-cv { background: #ffcc00; color: #002d5b; border: 2px solid #ffcc00; }
-  .btn-cv:hover { background: transparent; color: #ffcc00; }
   .btn-li { background: #0077b5; color: white; }
-
-  .section { 
-    background: rgba(255, 255, 255, 0.95); /* Slight transparency so you see the background */
-    max-width: 800px;
-    margin: 0 auto 20px auto;
-    padding: 30px; 
-    border-radius: 8px; 
-    border-left: 5px solid #ffcc00; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
-  }
-
-  h2 { color: #002d5b; margin-top: 0; }
-  .tag { background: #eef2f7; color: #002d5b; padding: 5px 10px; border-radius: 4px; font-size: 0.9em; font-weight: bold; }
+  
+  h1 { color: #002d5b; margin-bottom: 5px; }
+  h2 { color: #002d5b; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 5px; }
+  .subtitle { color: #666; font-weight: bold; margin-bottom: 30px; }
+  .tag { background: #002d5b; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; margin: 2px; display: inline-block; }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1 style="font-size: 3em; margin-bottom: 10px;">Assem Roumieh</h1>
-  <p style="font-size: 1.2em; color: #ffcc00; font-weight: bold;">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
+<div class="content-wrapper">
+  <h1>Assem Roumieh</h1>
+  <p class="subtitle">Automotive Engineering @ PoliTo | IT Operations @ Fincantieri S.p.A.</p>
   
   <div class="btn-container">
     <a href="Assem_Roumieh_CV.pdf" class="btn btn-cv">📂 DOWNLOAD CV (PDF)</a>
-    <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">🔗 LINKEDIN PROFILE</a>
+    <a href="https://www.linkedin.com/in/assem-roumieh/" class="btn btn-li">🔗 LINKEDIN</a>
   </div>
-</div>
 
-<div class="section">
-  <h2>🚀 Professional Story</h2>
-  <p>Bridging the gap between <b>heavy-industry mechanical diagnostics</b> and <b>Enterprise IT Infrastructure</b>. Currently managing digital migration projects at <b>Fincantieri S.p.A.</b>, ensuring operational continuity in complex industrial environments.</p>
-</div>
+  <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
 
-<div class="section">
-  <h2>💼 Engineering Experience</h2>
-  <p><b>IT Deployment Specialist - Fincantieri S.p.A.</b><br>
-  <span class="tag">Windows 11 Enterprise</span> <span class="tag">Hardware Provisioning</span> <span class="tag">Maritime Tech</span></p>
+  <h2>🚀 Professional Profile</h2>
+  <p>Managing digital migration and enterprise infrastructure at <b>Fincantieri S.p.A.</b>, specializing in high-tier technical deployment within industrial environments.</p>
+
+  <h2>💼 Experience</h2>
+  <p><b>IT Deployment Specialist</b><br>
+  <span class="tag">Windows 11</span> <span class="tag">Fincantieri</span> <span class="tag">Infrastructure</span></p>
 </div>
 
 <img src="https://profile-counter.glitch.me/assemroumieh/count.svg" alt="Visitor Counter" style="display:none;">
